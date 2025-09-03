@@ -19,7 +19,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	file, _ := os.Open(*filename)
+	file, err := os.Open(*filename)
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		os.Exit(1)
+	}
 	defer file.Close()
 
 	wordCounts := make(map[string]int)
