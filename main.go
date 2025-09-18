@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"log/slog"
 	"os"
 	"sort"
 	"strings"
@@ -14,17 +15,22 @@ func main() {
 	top := flag.Int("top", 10, "")
 	flag.Parse()
 
-	if *filename == "" {
-		fmt.Println("Usage: word-counter -file <filename> [-top N]")
+	if filename == nil || top == nil || *filename == "" {
+		slog.Info("Usage: word-counter -file <filename> [-top N]")
 		os.Exit(1)
 	}
 
 	file, err := os.Open(*filename)
 	if err != nil {
-		fmt.Println("Error opening file:", err)
+		slog.Error("Error opening file", "err", err)
 		os.Exit(1)
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+			slog.Error("Error closing file", "err", err)
+		}
+	}(file)
 
 	wordCounts := make(map[string]int)
 	scanner := bufio.NewScanner(file)
@@ -61,6 +67,6 @@ func main() {
 	}
 
 	for _, w := range words {
-		fmt.Printf("%s: %d\n", w.word, w.count)
+		slog.Info(fmt.Sprintf("%s: %d\n", w.word, w.count))
 	}
 }
