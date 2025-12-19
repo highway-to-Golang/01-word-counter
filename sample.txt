@@ -1,0 +1,11 @@
+The quick brown fox jumps over the lazy dog. The fox is quick and brown, while the dog is lazy and sleeps all day.
+
+Programming in Go is fun and efficient. Go provides excellent performance and simplicity. Many developers choose Go for their projects because it offers a great balance between speed and ease of use.
+
+The Go programming language was created by Google engineers Robert Griesemer, Rob Pike, and Ken Thompson. It was designed to address the challenges of modern software development, including concurrency, garbage collection, and compilation speed.
+
+Go's syntax is clean and readable, making it easy for developers to write maintainable code. The language includes built-in support for concurrent programming through goroutines and channels, which makes it particularly well-suited for building scalable applications.
+
+In this sample text, we can see various words repeated multiple times. Words like "the", "is", "and", "Go", "programming", and "language" appear frequently, which will help demonstrate the word counting functionality of our CLI utility.
+
+The utility should correctly identify these repeated words and provide an accurate count of their occurrences. It should also handle punctuation marks, capitalization, and various text formatting appropriately.
